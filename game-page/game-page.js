@@ -21,7 +21,7 @@ const nextSet = document.getElementById('next-set-button');
 
 
 // State
-const catchesAndEncounters = [];
+export const catchesAndEncounters = [];
 
 
 // Initialize Buttons

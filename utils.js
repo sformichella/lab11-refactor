@@ -82,7 +82,6 @@ export function getChildType(element, string) {
 }
 
 
-
 export function findPokemonByName(array, string) {
     for (const object of array) {
         if (object.name === string) {
@@ -91,7 +90,6 @@ export function findPokemonByName(array, string) {
     }
     return null;
 }
-
 
 
 export function getTotalCatches(pokemonData) {
@@ -108,3 +106,6 @@ export function getTotalCatches(pokemonData) {
 export function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+
+export function makeTableRow
