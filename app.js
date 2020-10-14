@@ -10,3 +10,5 @@ startButton.addEventListener('click', handlePlayButton);
 statsButton.addEventListener('click', handleStatsButton);
 
 localStorage.setItem('root', location.href);
+
+console.log(location.href);

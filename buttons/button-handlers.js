@@ -7,6 +7,8 @@ export function handleHomeButton() {
 export function handlePlayButton() {
     localStorage.setItem('catches-and-encounters', JSON.stringify([]));
 
+    console.log(location.href);
+
     if (location.href === root) {
         location.href = './game-page';
     } else {
