@@ -8,7 +8,7 @@ form label {
     display: flex;
     flex-direction: column;
 
-    border: solid 5px blue;
+    border: solid 5px yellow;
     border-radius: 10em;
 
     padding: 40px;
@@ -28,6 +28,10 @@ form span {
     font-weight: 700;
 }
 
+form p {
+    text-align: center;
+}
+
 .pokemon-display {
     height: 200px;
     width: 200px;
@@ -43,5 +47,5 @@ form span {
 }
 
 .blackground {
-    background-color: lightskyblue;
+    background-color: brown;
 }
