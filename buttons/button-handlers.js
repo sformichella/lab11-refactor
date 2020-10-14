@@ -1,16 +1,12 @@
-const root = location.href.slice(0, location.href.length - 8);
+const root = location.origin;
 
 export function handleHomeButton() {
-    if (location.href === '/') {
-        console.log('You are home, ya dingus!');
-    } else {
-        location.href = root;
-    };
-
-    console.log(root);
+    location.href = root;
 }
 
 export function handlePlayButton() {
+    localStorage.setItem('catches-and-encounters', JSON.stringify([]));
+
     if (location.href === root) {
         location.href = './game-page';
     } else {

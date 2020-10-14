@@ -139,3 +139,18 @@ export function renderEncounterRow(pokeObject) {
 
     return row;
 }
+
+
+// export function getRootDir(location) {
+//     if (location.path === '/') {
+//         return location.href;
+//     } else {
+//         let newPath = location.href.slice(0, location.href.length - 1);
+
+//         while (newPath[newPath.length] !== '/') {
+//             newPath = newPath.slice(0, newpath.length - 1)
+//         }
+
+//         return newPath;
+//     }
+// }

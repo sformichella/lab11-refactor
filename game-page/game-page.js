@@ -13,7 +13,15 @@ import {
     default as pokemonArray
 } from '../pokemon.js'
 
+import {
+    handleHomeButton,
+    handlePlayButton,
+} from '../buttons/button-handlers.js'
+
 // DOM Elements
+const homeButton = document.getElementById('home-button');
+homeButton.addEventListener('click', handleHomeButton);
+
 const numberOfCatchesDisplay = document.getElementById('caught-poke-number');
 const catchDisplay = document.getElementById('catch-text');
 const selectionSection = document.getElementById('selection-section');
@@ -109,6 +117,14 @@ selectionSection.addEventListener('change', (e) => {
 
 
 nextSet.addEventListener('click', () => {
+    const totalCatches = getTotalCatches(catchesAndEncounters);
+
+    if (totalCatches > 9) {
+        location.href = '../results';
+
+        localStorage.setItem('catches-and-encounters', JSON.stringify(catchesAndEncounters));
+    }
+
     nextSet.classList.add('hidden');
     catchDisplay.classList.add('hidden');
 
@@ -129,13 +145,5 @@ nextSet.addEventListener('click', () => {
 
         const pokeObject = getPokemonByIndex(randomIndices[buttons.indexOf(button)]);
         populateRadioButton(button, pokeObject);
-    }
-
-    const totalCatches = getTotalCatches(catchesAndEncounters);
-
-    if (totalCatches > 4) {
-        location.href = '../results';
-
-        localStorage.setItem('catches-and-encounters', JSON.stringify(catchesAndEncounters));
     }
 })
