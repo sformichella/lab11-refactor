@@ -55,10 +55,15 @@ form span {
     width: 200px;
 }
 
+.catch-text {
+    font-weight: 700;
+    font-size: 2em;
+}
+
 .hidden {
     display: none;
 }
 
 .blackground {
-    background-color: black;
+    background-color: lightskyblue;
 }

@@ -17,8 +17,9 @@ export function createPokemonSelection(label) {
     input.classList.add('hidden');
 
     const title = document.createElement('span');
+    const catchesAndEncounters = document.createElement('p')
 
-    selectionLabel.append(image, input, title);
+    selectionLabel.append(image, input, title, catchesAndEncounters);
 
     return selectionLabel;
 };
@@ -101,4 +102,9 @@ export function getTotalCatches(pokemonData) {
     }
 
     return total;
+}
+
+
+export function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }

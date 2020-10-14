@@ -5,18 +5,22 @@ import {
     populateRadioButton,
     getChildType,
     findPokemonByName,
-    getTotalCatches
+    getTotalCatches,
+    capitalize
 } from '../utils.js';
 
 import {
     default as pokemonArray
 } from '../pokemon.js'
 
-
-const catchesDisplay = document.getElementById('caught-poke-number');
+// DOM Elements
+const numberOfCatchesDisplay = document.getElementById('caught-poke-number');
+const catchDisplay = document.getElementById('catch-text');
 const selectionSection = document.getElementById('selection-section');
 const nextSet = document.getElementById('next-set-button');
 
+
+// State
 const catchesAndEncounters = [];
 
 
@@ -26,11 +30,6 @@ const buttons = [
     createPokemonSelection('second-pokemon'),
     createPokemonSelection('third-pokemon')
 ]
-
-const inputs = [];
-for (const button of buttons) {
-    inputs.push(getChildType(button, 'input'))
-}
 
 let randomIndices = getDistinctRandomNumbers(pokemonArray.length, 3);
 
@@ -45,6 +44,9 @@ for (const button of buttons) {
 
 // Handle Selections and Next Button Click
 selectionSection.addEventListener('change', (e) => {
+
+    const catchName = getChildType(e.target.parentElement, 'span').textContent;
+
     e.target.parentElement.classList.add('blackground');
 
     for (const button of buttons) {
@@ -59,8 +61,9 @@ selectionSection.addEventListener('change', (e) => {
 
         // Handle catchesAndEncounters data
         const encounterName = getChildType(button, 'span').textContent;
-        const pokeEncounter = findPokemonByName(catchesAndEncounters, encounterName);
+        let pokeEncounter = findPokemonByName(catchesAndEncounters, encounterName);
 
+            // Increment Encounters
         if (pokeEncounter) {
             pokeEncounter.encounters ++;
         } else {
@@ -71,26 +74,44 @@ selectionSection.addEventListener('change', (e) => {
             })
         }
 
+            // Increment Catches
         if (input === e.target) {
             const catchName = getChildType(button, 'span').textContent;
             const pokeCatch = findPokemonByName(catchesAndEncounters, catchName);
 
             pokeCatch.catches ++;
         }
+        // Work out catches and encounters
+        pokeEncounter = findPokemonByName(catchesAndEncounters, encounterName);
+        const encounters = pokeEncounter.encounters;
+        const catches = pokeEncounter.catches;
 
-        const totalCatches = getTotalCatches(catchesAndEncounters);
-        catchesDisplay.textContent = totalCatches;
+        const encountersDisplay = getChildType(button, 'p');
+        encountersDisplay.classList.remove('hidden');
+
+        // encountersDisplay.textContent = `You've encountered ${capitalize(catchName)} ${encounters} times and caught it ${catches} times!`;
+        encountersDisplay.textContent = `Encounters: ${encounters},  Catches: ${catches}`
+
     }
+    
+    
+    // Display catch and total number
+    const totalCatches = getTotalCatches(catchesAndEncounters);
+    numberOfCatchesDisplay.textContent = totalCatches;
+
+    catchDisplay.textContent = `Whoa! You caught ${capitalize(catchName)}!`
+    catchDisplay.classList.toggle('hidden');
 
 
-
-    nextSet.classList.toggle('hidden');
+    nextSet.classList.remove('hidden');
 })
 
 
 
 nextSet.addEventListener('click', () => {
-    nextSet.classList.toggle('hidden');
+    nextSet.classList.add('hidden');
+    catchDisplay.classList.add('hidden');
+
 
     // Reset buttons and get new pokemon
     randomIndices = getDistinctRandomNumbers(pokemonArray.length, 3);
@@ -98,6 +119,10 @@ nextSet.addEventListener('click', () => {
     for (const button of buttons) {
         const input = getChildType(button, 'input');
         input.disabled = false;
+        input.checked = false;
+
+        const encountersDisplay = getChildType(button, 'p');
+        encountersDisplay.classList.add('hidden');
 
         button.style.opacity = 1.0;
         button.classList.remove('blackground')
@@ -105,6 +130,4 @@ nextSet.addEventListener('click', () => {
         const pokeObject = getPokemonByIndex(randomIndices[buttons.indexOf(button)]);
         populateRadioButton(button, pokeObject);
     }
-
-
 })
