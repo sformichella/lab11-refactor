@@ -1,4 +1,4 @@
-const root = location.origin;
+const root = localStorage.getItem('root');
 
 export function handleHomeButton() {
     location.href = root;

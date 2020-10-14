@@ -8,3 +8,5 @@ const statsButton = document.getElementById('stats-button');
 
 startButton.addEventListener('click', handlePlayButton);
 statsButton.addEventListener('click', handleStatsButton);
+
+localStorage.setItem('root', location.href);
