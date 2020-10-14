@@ -108,4 +108,34 @@ export function capitalize(string) {
 }
 
 
-export function makeTableRow
+export function renderCatchRow(pokeObject) {
+    const row = document.createElement('tr');
+
+    const name = document.createElement('td');
+    name.textContent = pokeObject.name
+
+    const encounters = document.createElement('td');
+    encounters.textContent = pokeObject.encounters
+
+    const catches = document.createElement('td');
+    catches.textContent = pokeObject.catches;
+
+    row.append(name, encounters, catches);
+
+    return row;
+}
+
+
+export function renderEncounterRow(pokeObject) {
+    const row = document.createElement('tr');
+
+    const name = document.createElement('td');
+    name.textContent = pokeObject.name
+
+    const encounters = document.createElement('td');
+    encounters.textContent = pokeObject.encounters
+
+    row.append(name, encounters);
+
+    return row;
+}

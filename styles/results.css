@@ -5,3 +5,11 @@ article {
     flex-direction: row;
     justify-content: space-around;
 }
+
+table {
+    width: 300px;
+}
+
+th {
+    text-align: left;
+}

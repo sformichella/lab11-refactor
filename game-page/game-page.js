@@ -130,4 +130,12 @@ nextSet.addEventListener('click', () => {
         const pokeObject = getPokemonByIndex(randomIndices[buttons.indexOf(button)]);
         populateRadioButton(button, pokeObject);
     }
+
+    const totalCatches = getTotalCatches(catchesAndEncounters);
+
+    if (totalCatches > 4) {
+        location.href = '../results';
+
+        localStorage.setItem('catches-and-encounters', JSON.stringify(catchesAndEncounters));
+    }
 })
