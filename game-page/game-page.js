@@ -11,9 +11,16 @@ import {
 
 import {
     default as pokemonArray
-} from '../pokemon.js'
+} from '../pokemon.js';
+
+import {
+    handleHomeButton,
+} from '../buttons/button-handlers.js';
 
 // DOM Elements
+const homeButton = document.getElementById('home-button');
+homeButton.addEventListener('click', handleHomeButton);
+
 const numberOfCatchesDisplay = document.getElementById('caught-poke-number');
 const catchDisplay = document.getElementById('catch-text');
 const selectionSection = document.getElementById('selection-section');
@@ -21,7 +28,7 @@ const nextSet = document.getElementById('next-set-button');
 
 
 // State
-const catchesAndEncounters = [];
+export const catchesAndEncounters = [];
 
 
 // Initialize Buttons
@@ -29,7 +36,7 @@ const buttons = [
     createPokemonSelection('first-pokemon'),
     createPokemonSelection('second-pokemon'),
     createPokemonSelection('third-pokemon')
-]
+];
 
 let randomIndices = getDistinctRandomNumbers(pokemonArray.length, 3);
 
@@ -72,7 +79,7 @@ selectionSection.addEventListener('change', (e) => {
                 encounters: 1,
                 catches: 0
             })
-        }
+        };
 
             // Increment Catches
         if (input === e.target) {
@@ -91,8 +98,7 @@ selectionSection.addEventListener('change', (e) => {
 
         // encountersDisplay.textContent = `You've encountered ${capitalize(catchName)} ${encounters} times and caught it ${catches} times!`;
         encountersDisplay.textContent = `Encounters: ${encounters},  Catches: ${catches}`
-
-    }
+    };
     
     
     // Display catch and total number
@@ -104,11 +110,18 @@ selectionSection.addEventListener('change', (e) => {
 
 
     nextSet.classList.remove('hidden');
-})
-
+});
 
 
 nextSet.addEventListener('click', () => {
+    const totalCatches = getTotalCatches(catchesAndEncounters);
+
+    if (totalCatches > 9) {
+        location.href = '../results';
+
+        localStorage.setItem('catches-and-encounters', JSON.stringify(catchesAndEncounters));
+    }
+
     nextSet.classList.add('hidden');
     catchDisplay.classList.add('hidden');
 
@@ -130,4 +143,4 @@ nextSet.addEventListener('click', () => {
         const pokeObject = getPokemonByIndex(randomIndices[buttons.indexOf(button)]);
         populateRadioButton(button, pokeObject);
     }
-})
+});

@@ -1,13 +1,13 @@
 import {
     default as pokemonArray
-} from './pokemon.js'
+} from './pokemon.js';
 
 export function createPokemonSelection(label) {
     const selectionLabel = document.createElement('label');
     selectionLabel.setAttribute('for', label);
 
     const image = document.createElement('img');
-    image.classList.add('pokemon-image')
+    image.classList.add('pokemon-image');
 
     const input = document.createElement('input');
     input.setAttribute('type', 'radio');
@@ -17,11 +17,11 @@ export function createPokemonSelection(label) {
     input.classList.add('hidden');
 
     const title = document.createElement('span');
-    const catchesAndEncounters = document.createElement('p')
+    const catchesAndEncounters = document.createElement('p');
 
     selectionLabel.append(image, input, title, catchesAndEncounters);
 
-    return selectionLabel;
+    return selectionLabel
 };
 
 
@@ -35,12 +35,12 @@ export function getDistinctRandomNumbers(range, number) {
 
     // Take out random elements of the array until the array has the given number of elements
     while (array.length > number) {
-        const randomIndex = Math.floor(Math.random() * array.length)
+        const randomIndex = Math.floor(Math.random() * array.length);
 
         array.splice(randomIndex, 1);
     }
 
-    return array;
+    return array
 };
 
 
@@ -49,7 +49,7 @@ export function getPokemonByIndex(index) {
         name: pokemonArray[index]['pokemon'],
         image: pokemonArray[index]['url_image']
     };
-}
+};
 
 
 export function populateRadioButton(radio, pokemonObject) {
@@ -58,11 +58,11 @@ export function populateRadioButton(radio, pokemonObject) {
 
     const name = getChildType(radio, 'span');
     name.textContent = pokemonObject.name;
-}
+};
 
 
 export function getAllChildren(element) {
-    return [...element.childNodes];
+    return [...element.childNodes]
 };
 
 
@@ -75,23 +75,21 @@ export function getChildType(element, string) {
     }
 
     if (children.length === 1) {
-        return children[0];
+        return children[0]
     } else {
-        return children;
+        return children
     }
-}
-
+};
 
 
 export function findPokemonByName(array, string) {
     for (const object of array) {
         if (object.name === string) {
-            return object;
+            return object
         }
     }
-    return null;
-}
-
+    return null
+};
 
 
 export function getTotalCatches(pokemonData) {
@@ -102,9 +100,57 @@ export function getTotalCatches(pokemonData) {
     }
 
     return total;
-}
+};
 
 
 export function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-}
+};
+
+
+export function renderCatchRow(pokeObject) {
+    const row = document.createElement('tr');
+
+    const name = document.createElement('td');
+    name.textContent = pokeObject.name;
+
+    const encounters = document.createElement('td');
+    encounters.textContent = pokeObject.encounters;
+
+    const catches = document.createElement('td');
+    catches.textContent = pokeObject.catches;
+
+    row.append(name, encounters, catches);
+
+    return row;
+};
+
+
+export function renderEncounterRow(pokeObject) {
+    const row = document.createElement('tr');
+
+    const name = document.createElement('td');
+    name.textContent = pokeObject.name;
+
+    const encounters = document.createElement('td');
+    encounters.textContent = pokeObject.encounters;
+
+    row.append(name, encounters);
+
+    return row
+};
+
+
+// export function getRootDir(location) {
+//     if (location.path === '/') {
+//         return location.href;
+//     } else {
+//         let newPath = location.href.slice(0, location.href.length - 1);
+
+//         while (newPath[newPath.length] !== '/') {
+//             newPath = newPath.slice(0, newpath.length - 1)
+//         }
+
+//         return newPath;
+//     }
+// }

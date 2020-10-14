@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/results.css">
+</head>
+<body>
+
+    
+    <main>
+
+        <nav>
+            <button class="medium-button" id="home-button">Home</button>
+            <button class="medium-button" id="all-time-stats">All-time Stats</button>
+            <button class="medium-button" id="new-session">New Session</button>
+        </nav>
+        
+        <h1>Poke-Catcher!</h1>
+
+
+        <article>
+            <table id="catches-table">
+
+                <tr>
+                    <th>Pokemon</th>
+                    <th>Encounters</th>
+                    <th>Catches</th>
+                </tr>
+    
+                <!-- <tr>
+                    <td>Beedrill</td>
+                    <td>3</td>
+                    <td>1</td>
+                </tr>  -->
+    
+            </table>
+
+            <table id="encounters-table">
+
+                <tr>
+                    <th>Pokemon</th>
+                    <th>Encounters</th>
+                </tr>
+    
+            </table>
+        </article>
+
+        <canvas id="chart"></canvas>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+        <script type="module" src="app.js"></script>
+        
+    </main>
+
+    <script type="module" src="results.js"></script>
+</body>
+</html>
