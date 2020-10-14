@@ -1,6 +1,7 @@
 import {
     renderCatchRow,
-    renderEncounterRow
+    renderEncounterRow,
+    capitalize
 } from '../utils.js';
 
 import {
@@ -34,4 +35,54 @@ for (const pokemon of catchesAndEncounters) {
     }
 }
 
-console.log(catchesAndEncounters[0]);
+
+
+// Chart
+const ctx = document.getElementById('chart').getContext('2d');
+
+const encountersData = catchesAndEncounters.map(pokemon => pokemon.encounters);
+const catchData = catchesAndEncounters.map(pokemon => pokemon.catches);
+const labels = catchesAndEncounters.map(pokemon => capitalize(pokemon.name));
+
+const dataSets = [];
+
+const labelColors = ['red', 'blue', 'yellow', 'green', 'purple', 'orange'];
+
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Encounters',
+                data: encountersData,
+                backgroundColor: 'red'
+            },
+            {
+                label: 'Catches',
+                data: catchData,
+                backgroundColor: 'blue'
+            }
+        ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    fontColor: 'yellow',
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: 'yellow',
+                }
+            }]
+        },
+        legend: {
+            labels: {
+                fontColor: 'yellow',
+            }
+        }
+    }
+});

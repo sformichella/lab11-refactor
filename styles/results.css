@@ -13,3 +13,8 @@ table {
 th {
     text-align: left;
 }
+
+canvas {
+    width: 75%;
+    height: 500px;
+  }
